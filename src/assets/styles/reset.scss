@@ -1,0 +1,312 @@
+/* reset.scss */
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+blockquote,
+q {
+	quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+
+@keyframes show-move {
+	0% {
+		transform: translateY(10px);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+html::-webkit-scrollbar {
+	width: 7px;
+	border-radius: 5px;
+	/* 设置滚动条宽度 */
+}
+
+html::-webkit-scrollbar-track {
+	background: #f1f1f1;
+	border-radius: 5px;
+	/* 设置滚动条背景色 */
+}
+
+html::-webkit-scrollbar-thumb {
+	background: #888;
+	border-radius: 5px;
+	/* 设置滚动条滑块颜色 */
+}
+
+html::-webkit-scrollbar-thumb:hover {
+	background: #555;
+	border-radius: 5px;
+	/* 设置滚动条滑块在悬停时的颜色 */
+}
+
+// 控制光标大小
+.typed-cursor {
+	font-size: 38px;
+}
+
+.com-chart {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	& .ant-popconfirm-description {
+		margin-bottom: 0 !important;
+		margin-inline-start: 0 !important;
+	}
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,700&display=swap');
+
+@font-face {
+	font-family: "iconfont";
+	/* Project id 4372295 */
+	src: url('iconfont.woff2?t=1706075284052') format('woff2'),
+		url('iconfont.woff?t=1706075284052') format('woff'),
+		url('iconfont.ttf?t=1706075284052') format('truetype');
+}
+
+.iconfont {
+	font-family: "iconfont" !important;
+	font-size: 16px;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-24px:before {
+	content: "\e601";
+}
+
+.icon-ic_business24px:before {
+	content: "\e618";
+}
+
+.icon-shangchuan:before {
+	content: "\e62e";
+}
+
+.icon-zhiye:before {
+	content: "\e630";
+}
+
+.icon-gengduo:before {
+	content: "\e68a";
+}
+
+.icon-tuichu:before {
+	content: "\e7ed";
+}
+
+.icon-top:before {
+	content: "\e663";
+}
+
+.icon-down:before {
+	content: "\e664";
+}
+
+.icon-shanchu:before {
+	content: "\e61c";
+}
+
+.icon-fasong:before {
+	content: "\e61d";
+}
+
+.icon-shenyuetongguo:before {
+	content: "\e61e";
+}
+
+.icon-shenyuebutongguo:before {
+	content: "\e61f";
+}
+
+.icon-yibiaopan:before {
+	content: "\e620";
+}
+
+.icon-tubiao:before {
+	content: "\e621";
+}
+
+.icon-dingwei:before {
+	content: "\e622";
+}
+
+.icon-xinzeng:before {
+	content: "\e623";
+}
+
+.icon-guoji:before {
+	content: "\e624";
+}
+
+.icon-yidu:before {
+	content: "\e625";
+}
+
+.icon-suo-1:before {
+	content: "\e626";
+}
+
+.icon-moren:before {
+	content: "\e627";
+}
+
+.icon-moren1:before {
+	content: "\e628";
+}
+
+.icon-bumenguanli:before {
+	content: "\e629";
+}
+
+.icon-caidanguanli:before {
+	content: "\e62a";
+}
+
+.icon-xiangmuguanli:before {
+	content: "\e62b";
+}
+
+.icon-caozuo:before {
+	content: "\e62c";
+}
+
+.icon-shezhi:before {
+	content: "\e62d";
+}

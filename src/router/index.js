@@ -12,6 +12,8 @@ import PicTable from "@/components/Table/PicTable.vue";
 import CommentDetail from "@/views/Admin/Home/Components/CommentDetail.vue";
 import LockSet from '@/views/Admin/Set/LockSet.vue'
 import SystemSet from '@/views/Admin/Set/SystemSet.vue'
+import Select from '@/views/Select/Select.vue'
+import DownLoad from '@/views/DownLoad/DownLoad.vue'
 
 export const router = createRouter({
     history: createWebHashHistory(),
@@ -19,6 +21,14 @@ export const router = createRouter({
         {
             path: '/login',
             component: Login
+        },
+        {
+            path:'/select',
+            component: Select
+        },
+        {
+            path:'/download',
+            component: DownLoad
         },
         {
             path: '/admin',

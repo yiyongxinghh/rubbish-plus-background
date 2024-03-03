@@ -127,13 +127,13 @@ onMounted(async () => {
         .chart-top {
             height: 50vh;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-evenly;
 
             .chart-item {
                 border: 2px solid rgba(0, 0, 0, 0.1);
                 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
                 height: 100%;
-                width: 100%;
+                width: 40vw;
                 display: flex;
                 flex-direction: column;
 

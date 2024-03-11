@@ -113,7 +113,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .pic-table {
-    width: 80VW;
+    width: 100%;
 
     .pic-title {
         font-size: 17px;

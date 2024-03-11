@@ -9,36 +9,36 @@ import { findAllUser } from './api/user'
 const whiteList = ['/login','/404']
 
 //前置路由守卫
-router.beforeEach(async (to, from, next) => {
-    nProgress.start()
-    const store = userStore()
-    if(store.userToken){
-        // try {
-        //     await findAllUser() 
-        // } catch (err) {
-        //     next('/login') //中转到登录页
-        //     return store.clearToken()
-        // }
-        //存在token
-        if(to.path === '/login'){
-            //跳转至主页
-            next('/admin')
+// router.beforeEach(async (to, from, next) => {
+//     nProgress.start()
+//     const store = userStore()
+//     if(store.userToken){
+//         // try {
+//         //     await findAllUser() 
+//         // } catch (err) {
+//         //     next('/login') //中转到登录页
+//         //     return store.clearToken()
+//         // }
+//         //存在token
+//         if(to.path === '/login'){
+//             //跳转至主页
+//             next('/admin')
 
-        }else{
-            //放过
-            next()
-        }
-    }else{
-        //不存在token
-        if(whiteList.includes(to.path))
-        {
-            //在白名单中，放过
-            next()
-        }else{
-            next('/login') //中转到登录页
-        }
-    }
-})
+//         }else{
+//             //放过
+//             next()
+//         }
+//     }else{
+//         //不存在token
+//         if(whiteList.includes(to.path))
+//         {
+//             //在白名单中，放过
+//             next()
+//         }else{
+//             next('/login') //中转到登录页
+//         }
+//     }
+// })
 
 //后置路由守卫
 router.afterEach(() => {

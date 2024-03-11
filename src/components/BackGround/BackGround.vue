@@ -161,7 +161,7 @@ const animate = () => {
 
 // 重新渲染
 const screenRender = () => {
-    renderer.setSize(window.innerWidth, window.innerHeight - 1);
+    renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.render(scene, camera)
 }
 

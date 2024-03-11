@@ -164,7 +164,7 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 .category-table {
-    width: 80VW;
+    width: 100%;
 
     .category-title {
         font-size: 17px;

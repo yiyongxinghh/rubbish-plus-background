@@ -50,6 +50,7 @@ const initChart = () => {
 //屏幕适配
 const screenAdapter = () => {
     titleFontSize.value = cardRef.value.offsetWidth / 100 * 3.6
+    cardRef.value.style.height = titleFontSize.value * 50 + 'px'
     chartInstance.value.setOption({
         series: [
             {

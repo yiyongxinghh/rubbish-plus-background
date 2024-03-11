@@ -180,7 +180,7 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 .user-table {
-    width: 80VW;
+    width: 100%;
 
     .user-title {
         font-size: 17px;

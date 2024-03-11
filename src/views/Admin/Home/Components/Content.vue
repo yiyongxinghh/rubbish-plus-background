@@ -217,23 +217,24 @@ onMounted(() => {
             justify-content: space-between;
             padding-top: 20px;
 
-
             .card-item-container {
-                height: 100%;
                 display: grid;
                 grid-template-columns: repeat(4, 1fr);
                 grid-gap: 20px;
+                align-items: center;
                 /* 列之间的间隔 */
 
                 .card-chart {
                     display: flex;
                     flex-direction: column;
+                    justify-content: center;
                     align-items: center;
                     padding: 0 20px;
                     width: 100%;
-                    height: 200px;
+                    height: 250px;
 
                     h1 {
+                        margin-top: 1rem;
                         font-size: 12px;
                         color: #8f959e;
                     }

@@ -2,48 +2,39 @@
   <div class="content">
     <Banner />
     <div class="home-chart">
-      <div class="chart-top">
-        <div class="chart-item">
-          <section class="chart-title">
-            <h1><i>|</i>分类总数统计</h1>
-            <button @click="openModal('categoryTotal')">详情</button>
-          </section>
-          <Pie ref="pie" />
-        </div>
-        <div class="chart-item">
-          <section class="chart-title">
-            <h1><i>|</i>废品总数统计</h1>
-            <button @click="openModal('garbageTotal')">详情</button>
-          </section>
-          <Bar ref="bar" />
-        </div>
+      <div class="chart-item">
+        <section class="chart-title">
+          <h1><i>|</i>分类总数统计</h1>
+          <button @click="openModal('categoryTotal')">详情</button>
+        </section>
+        <Pie ref="pie" />
       </div>
-      <div class="chart-top">
-        <div class="chart-item">
-          <section class="chart-title">
-            <h1><i>|</i>销量总数统计</h1>
-            <button @click="openModal('saleTotal')">详情</button>
-          </section>
-          <Score ref="score" />
-        </div>
-        <div class="chart-item">
-          <section class="chart-title">
-            <h1><i>|</i>消息与评论统计</h1>
-            <button @click="openModal('commentAndMessage')">详情</button>
-          </section>
-          <Message ref="message" />
-        </div>
+      <div class="chart-item">
+        <section class="chart-title">
+          <h1><i>|</i>废品总数统计</h1>
+          <button @click="openModal('garbageTotal')">详情</button>
+        </section>
+        <Bar ref="bar" />
+      </div>
+      <div class="chart-item">
+        <section class="chart-title">
+          <h1><i>|</i>销量总数统计</h1>
+          <button @click="openModal('saleTotal')">详情</button>
+        </section>
+        <Score ref="score" />
+      </div>
+      <div class="chart-item">
+        <section class="chart-title">
+          <h1><i>|</i>消息与评论统计</h1>
+          <button @click="openModal('commentAndMessage')">详情</button>
+        </section>
+        <Message ref="message" />
       </div>
     </div>
   </div>
   <CountModal :open="open" :modal="modal">
     <template v-slot:[modal]>
-      <a-table
-        :columns="columns"
-        :dataSource="dataSource"
-        bordered
-        :pagination="pagination"
-      >
+      <a-table :columns="columns" :dataSource="dataSource" bordered :pagination="pagination">
       </a-table>
     </template>
   </CountModal>
@@ -120,65 +111,60 @@ const openModal = (str) => {
   }
 };
 
-onMounted(async () => {});
+onMounted(async () => { });
 </script>
 
 <style lang="scss" scoped>
 .content {
   padding: 10px 20px;
   overflow: auto;
+
   &::-webkit-scrollbar {
     display: none;
   }
 
   .home-chart {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(2,50vh);
 
-    .chart-top {
-      height: 50vh;
+    .chart-item {
+      border: 2px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
       display: flex;
-      justify-content: space-evenly;
+      flex-direction: column;
 
-      .chart-item {
-        border: 2px solid rgba(0, 0, 0, 0.1);
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-        height: 100%;
-        width: 44vw;
+      .chart-title {
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px;
+        font-size: 18px;
 
-        .chart-title {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 8px;
-          font-size: 18px;
+        h1 {
+          color: white;
 
-          h1 {
-            color: white;
-
-            i {
-              font-size: 24px;
-              font-weight: 1000;
-              color: #00b96b;
-              margin-right: 10px;
-            }
-          }
-
-          button {
-            cursor: pointer;
-            padding: 5px;
-            width: 4rem;
-            color: white;
-            background-color: #20242a;
-            font-size: 18px;
-            border-radius: 5px;
-            outline: none;
-            border: none;
+          i {
+            font-size: 24px;
+            font-weight: 1000;
+            color: #00b96b;
+            margin-right: 10px;
           }
         }
+
+        button {
+          cursor: pointer;
+          padding: 5px;
+          width: 4rem;
+          color: white;
+          background-color: #20242a;
+          font-size: 18px;
+          border-radius: 5px;
+          outline: none;
+          border: none;
+        }
       }
+
     }
   }
 
@@ -191,5 +177,15 @@ onMounted(async () => {});
       background-position: 100% 100%;
     }
   }
+}
+@media screen and (max-width: 768px) {
+
+// 响应式设计，当屏幕宽度小于等于768px时，应用以下
+.content {
+  .home-chart {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, 50vh);
+  }
+}
 }
 </style>

@@ -16,13 +16,11 @@
             <a-list item-layout="horizontal" :data-source="topFive">
               <template #renderItem="{ item }">
                 <a-list-item>
-                  <a-list-item-meta
-                    :description="item.messageIsRead ? '已读' : '未读'"
-                  >
+                  <a-list-item-meta :description="item.messageIsRead ? '已读' : '未读'">
                     <template #title>
                       <a href="https://www.antdv.com/">{{
-                        item.sender.userName
-                      }}</a>
+              item.sender.userName
+            }}</a>
                     </template>
                     <template #avatar>
                       <a-avatar src="" />
@@ -38,13 +36,11 @@
             <a-list item-layout="horizontal" :data-source="topFive">
               <template #renderItem="{ item }">
                 <a-list-item>
-                  <a-list-item-meta
-                    :description="item.messageIsRead ? '已读' : '未读'"
-                  >
+                  <a-list-item-meta :description="item.messageIsRead ? '已读' : '未读'">
                     <template #title>
                       <a href="https://www.antdv.com/">{{
-                        item.sender.userName
-                      }}</a>
+              item.sender.userName
+            }}</a>
                     </template>
                     <template #avatar>
                       <a-avatar src="" />
@@ -63,8 +59,8 @@
         <Card cardTitle="评论监控" class="card-grid-box-panel-left">
           <template class="card-item-container">
             <template v-for="manageItem in manageList">
-              <cardItem :title="manageItem.title" :to="manageItem.to"
-                ><i class="iconfont icon" v-html="manageItem.icon"></i>
+              <cardItem :title="manageItem.title" :to="manageItem.to"><i class="iconfont icon"
+                  v-html="manageItem.icon"></i>
               </cardItem>
             </template>
           </template>
@@ -72,8 +68,7 @@
         <Card cardTitle="设置" class="card-grid-box-panel-right">
           <template class="card-item-container">
             <template v-for="setItem in setList">
-              <cardItem :title="setItem.title" :to="setItem.to"
-                ><i class="iconfont icon" v-html="setItem.icon"></i>
+              <cardItem :title="setItem.title" :to="setItem.to"><i class="iconfont icon" v-html="setItem.icon"></i>
               </cardItem>
             </template>
           </template>
@@ -223,6 +218,11 @@ onMounted(() => {
 .content {
   padding: 10px 20px;
   box-sizing: border-box;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .admin {
     animation: show-move 0.6s linear;
@@ -247,14 +247,17 @@ onMounted(() => {
       .card-grid-box-count {
         grid-column: 1/4;
       }
-      .card-grid-box-list {
-      }
+
+      .card-grid-box-list {}
+
       .card-grid-box-sale {
         grid-column: 2/5;
       }
+
       .card-grid-box-panel-left {
         grid-column: 1/3;
       }
+
       .card-grid-box-panel-right {
         grid-column: 3/5;
       }
@@ -284,7 +287,7 @@ onMounted(() => {
       }
 
       .card-message {
-        width: 20vw;
+        width: 100%;
         overflow: auto;
 
         &::-webkit-scrollbar {
@@ -292,7 +295,7 @@ onMounted(() => {
         }
       }
 
-      .card-item-sale{
+      .card-item-sale {
         height: 40vh;
       }
 
@@ -320,27 +323,29 @@ onMounted(() => {
     }
   }
 }
+
 @media screen and (max-width: 768px) {
+
   // 响应式设计，当屏幕宽度小于等于768px时，应用以下
   .content {
-    overflow: auto;
-    &::-webkit-scrollbar {
-      display: none;
-    }
     .admin {
       .card-box {
         grid-template-columns: 1fr;
+
         .card-grid-box-count {
           grid-column: 1;
         }
-        .card-grid-box-list {
-        }
+
+        .card-grid-box-list {}
+
         .card-grid-box-sale {
           grid-column: 1;
         }
+
         .card-grid-box-panel-left {
           grid-column: 1;
         }
+
         .card-grid-box-panel-right {
           grid-column: 1;
         }

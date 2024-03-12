@@ -1,5 +1,5 @@
 <template>
-  <div class="com-chart" ref="saleRef"></div>
+    <div class="com-chart" ref="saleRef"></div>
 </template>
 
 <script setup>
@@ -92,9 +92,13 @@ const screenAdapter = () => {
 const updateChart = async () => {
     chartInstance.value.setOption({
         xAxis: {
-            data: xAxisData
+            data: ['Mon', 'Tue', 'Wed']
         },
-        series: [10,20,30],
+        series: [
+            {
+                data: [10, 20, 30]
+            }
+        ],
         legend: {
             data: ['评论', '消息']
         },
@@ -104,7 +108,7 @@ const updateChart = async () => {
 /**
  * 定时器回调，当浏览器窗口发生像素差别很大的变化时，图表的比例会出现问题，通过定时器不断的更新图表解决
  */
- const screenAdapterimer = () => {
+const screenAdapterimer = () => {
     screenAdapter()
     if (screenTimer.value) clearInterval(screenTimer.value)
     screenTimer.value = setTimeout(() => {
@@ -114,6 +118,7 @@ const updateChart = async () => {
 
 onMounted(async () => {
     initChart()
+    updateChart()
     window.addEventListener('resize', screenAdapterimer)
     screenAdapter()
 })
@@ -124,5 +129,4 @@ onBeforeUnmount(() => {
 })
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

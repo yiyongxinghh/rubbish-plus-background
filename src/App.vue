@@ -13,59 +13,57 @@ onMounted(() => {
 </script>
 
 <template>
-  <a-config-provider
-    :theme="{
-      token: {
-        wireframe: false,
-        colorPrimary: '#252525',
-        colorInfo: '#ffffff',
+  <a-config-provider :theme="{
+    token: {
+      wireframe: false,
+      colorPrimary: '#252525',
+      colorInfo: '#ffffff',
+    },
+    components: {
+      Steps: {
+        colorTextLabel: '#ffffff',
       },
-      components: {
-        Steps: {
-          colorTextLabel: '#ffffff',
-        },
-        Table: {
-          colorBgContainer: 'rgba(0,0,0,0.95)',
-          colorBorderSecondary: '#7E8C8D',
-          colorText: '#ffffff',
-          colorFillAlter: '#252525',
-          colorTextHeading: '#ffffff',
-          fontSize: 17,
-          fontWeightStrong: 1000,
-        },
-        Pagination: {
-          colorPrimar: '#7E8C8D',
-          colorPrimaryHover: '#7E8C8D',
-          colorText: '#ffffff',
-          colorTextDisabled: '#7E8C8D',
-        },
-        Select: {
-          colorPrimary: '#7E8C8D',
-          colorPrimaryHover: '#7E8C8D',
-        },
-        Tabs: {
-          colorPrimary: '#ffffff',
-          colorText: '#ffffff',
-        },
-        List: {
-          colorText: '#ffffff',
-          colorSplit: 'rgba(255,255,255,0.2)',
-          colorBorder: 'rgba(255,255,255,0.2)',
-          colorTextDescription: 'rgba(255,255,255,0.5)',
-        },
-        Button: {
-          colorError: '#7E8C8D',
-        },
-        Card: {
-          colorPrimary: '#ffffff',
-          colorBgContainer: 'rgba(255,255,255,0.3)',
-        },
-        Form: {
-          colorTextHeading: '#fff',
-        },
+      Table: {
+        colorBgContainer: 'rgba(0,0,0,0.95)',
+        colorBorderSecondary: '#7E8C8D',
+        colorText: '#ffffff',
+        colorFillAlter: '#252525',
+        colorTextHeading: '#ffffff',
+        fontSize: 17,
+        fontWeightStrong: 1000,
       },
-    }"
-  >
+      Pagination: {
+        colorPrimar: '#7E8C8D',
+        colorPrimaryHover: '#7E8C8D',
+        colorText: '#ffffff',
+        colorTextDisabled: '#7E8C8D',
+      },
+      Select: {
+        colorPrimary: '#7E8C8D',
+        colorPrimaryHover: '#7E8C8D',
+      },
+      Tabs: {
+        colorPrimary: '#ffffff',
+        colorText: '#ffffff',
+      },
+      List: {
+        colorText: '#ffffff',
+        colorSplit: 'rgba(255,255,255,0.2)',
+        colorBorder: 'rgba(255,255,255,0.2)',
+        colorTextDescription: 'rgba(255,255,255,0.5)',
+      },
+      Button: {
+        colorError: '#7E8C8D',
+      },
+      Card: {
+        colorPrimary: '#ffffff',
+        colorBgContainer: 'rgba(255,255,255,0.3)',
+      },
+      Form: {
+        colorTextHeading: '#ccc',
+      },
+    },
+  }">
   </a-config-provider>
 
   <router-view></router-view>

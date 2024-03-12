@@ -200,7 +200,7 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 .garbage-table {
-    width: 80VW;
+    width: 100%;
 
     .garbage-title {
         font-size: 17px;

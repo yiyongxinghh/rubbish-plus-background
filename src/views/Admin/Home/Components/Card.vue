@@ -13,7 +13,6 @@ defineProps(['cardTitle'])
 
 <style lang="scss" scoped>
 .card-content {
-    height: 300px;
     border-radius: 10px;
     margin: 5px;
     padding: 10px;

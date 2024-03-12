@@ -2,7 +2,7 @@ import { router } from '@/router/index'
 import nProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { userStore } from '@/stores/userStore'
-import { findAllUser } from './api/user'
+import { groupUser } from './api/user'
 
 //白名单
 //允许无token的情况下访问的页面
@@ -14,7 +14,7 @@ router.beforeEach(async (to, from, next) => {
     const store = userStore()
     if(store.userToken){
         // try {
-        //     await findAllUser() 
+        //     await groupUser() 
         // } catch (err) {
         //     next('/login') //中转到登录页
         //     return store.clearToken()
@@ -22,7 +22,7 @@ router.beforeEach(async (to, from, next) => {
         //存在token
         if(to.path === '/login'){
             //跳转至主页
-            next('/admin')
+            next('/select')
 
         }else{
             //放过

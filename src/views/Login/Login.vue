@@ -189,7 +189,7 @@ const login = async () => {
         message.success(loginData.message, 3)
         saveUserData(loginData.user)
         saveToken(loginData.access_token)
-        router.push('/admin')
+        router.push('/select')
     } else {
         message.error(loginData.message, 3)
         errorhandler(true, passError)
@@ -238,7 +238,7 @@ const empty = () => {
 //开启自动打字
 const typing = () => {
     new Typed('#typing', {
-        strings: ['Welcome to rubbish-puls.', '欢迎使用废品回收系统.'],
+        strings: ['Welcome to rubbish-plus.', '欢迎使用废品回收系统.'],
         typeSpeed: 50,
         loop: true,
         smartBackspace: true,

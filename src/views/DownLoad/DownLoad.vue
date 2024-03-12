@@ -8,10 +8,10 @@
                     <h1>rubbish-plus</h1>
                 </div>
                 <ul class="conten-list">
-                    <li>首页</li>
-                    <li>详情</li>
-                    <li>更多</li>
-                    <li>登出</li>
+                    <li @click="pushRoute('/login')">首页</li>
+                    <li @click="pushRoute('/login')">详情</li>
+                    <li @click="pushRoute('/login')">更多</li>
+                    <li @click="pushRoute('/login')">登出</li>
                 </ul>
             </div>
             <div class="content-main">
@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-        <Footer />
+        <Footer/>
     </div>
 </template>
 
@@ -31,12 +31,20 @@
 import Typed from 'typed.js';
 import BackGround from "@/components/BackGround/BackGround.vue";
 import Footer from '@/components/Footer/Footer.vue';
+import { useRouter } from 'vue-router'
 import { onMounted } from 'vue';
+
+// 路由器
+const router = useRouter();
+
+const pushRoute = (value)=>{
+    router.push(value)
+}
 
 //开启自动打字
 const typing = () => {
     new Typed('#title', {
-        strings: ['Welcome to rubbish-puls.', '欢迎使用废品回收系统.'],
+        strings: ['Welcome to rubbish-plus.', '欢迎使用废品回收系统.'],
         typeSpeed: 50,
         loop: true,
         smartBackspace: true,

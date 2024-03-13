@@ -83,6 +83,17 @@ export const getGarbageOne = (id) => {
 }
 
 /**
+ * 根据指定id获取指定废品销量
+ * @returns 
+ */
+export const findOneGarbageQuantity = (id) => {
+    return httpInstance({
+        method: 'POST',
+        url: `/garbage/findOneGarbageQuantity/${id}`
+    })
+}
+
+/**
  * 获取所有废品销量
  * @returns 
  */

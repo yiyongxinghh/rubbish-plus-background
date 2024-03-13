@@ -33,8 +33,13 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .content {
+    height: 100vh;
     padding: 10px 20px;
     box-sizing: border-box;
+    overflow: auto;
+    &::-webkit-scrollbar{
+        display: none;
+    }
 
     .loadmore-list {
         min-height: 350px;

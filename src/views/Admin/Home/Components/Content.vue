@@ -16,11 +16,13 @@
             <a-list item-layout="horizontal" :data-source="topFive">
               <template #renderItem="{ item }">
                 <a-list-item>
-                  <a-list-item-meta :description="item.messageIsRead ? '已读' : '未读'">
+                  <a-list-item-meta
+                    :description="item.messageIsRead ? '已读' : '未读'"
+                  >
                     <template #title>
                       <a href="https://www.antdv.com/">{{
-              item.sender.userName
-            }}</a>
+                        item.sender.userName
+                      }}</a>
                     </template>
                     <template #avatar>
                       <a-avatar src="" />
@@ -33,17 +35,20 @@
         </Card>
         <Card cardTitle="销售排行" class="card-grid-box-list">
           <div class="card-message">
-            <a-list item-layout="horizontal" :data-source="topFive">
+            <a-list item-layout="horizontal" :data-source="garbageRankList">
               <template #renderItem="{ item }">
-                <a-list-item>
-                  <a-list-item-meta :description="item.messageIsRead ? '已读' : '未读'">
+                <a-list-item @click="getQuantity(item)">
+                  <template #extra>
+                    <a-tag color="#777">销量：{{ item.totalQuantity }}</a-tag>
+                  </template>
+                  <a-list-item-meta :description="item.garbageType">
                     <template #title>
                       <a href="https://www.antdv.com/">{{
-              item.sender.userName
-            }}</a>
+                        item.garbageName
+                      }}</a>
                     </template>
                     <template #avatar>
-                      <a-avatar src="" />
+                      <a-avatar :src="item.picUrl" />
                     </template>
                   </a-list-item-meta>
                 </a-list-item>
@@ -53,14 +58,14 @@
         </Card>
         <Card cardTitle="销售图" class="card-grid-box-sale">
           <div class="card-item-sale">
-            <SaleChart></SaleChart>
+            <SaleChart :showList="showList"></SaleChart>
           </div>
         </Card>
         <Card cardTitle="评论监控" class="card-grid-box-panel-left">
           <template class="card-item-container">
             <template v-for="manageItem in manageList">
-              <cardItem :title="manageItem.title" :to="manageItem.to"><i class="iconfont icon"
-                  v-html="manageItem.icon"></i>
+              <cardItem :title="manageItem.title" :to="manageItem.to"
+                ><i class="iconfont icon" v-html="manageItem.icon"></i>
               </cardItem>
             </template>
           </template>
@@ -68,7 +73,8 @@
         <Card cardTitle="设置" class="card-grid-box-panel-right">
           <template class="card-item-container">
             <template v-for="setItem in setList">
-              <cardItem :title="setItem.title" :to="setItem.to"><i class="iconfont icon" v-html="setItem.icon"></i>
+              <cardItem :title="setItem.title" :to="setItem.to"
+                ><i class="iconfont icon" v-html="setItem.icon"></i>
               </cardItem>
             </template>
           </template>
@@ -84,12 +90,24 @@ import cardItem from "@/components/CardItem/CardItem.vue";
 import CardItemChart from "@/components/Charts/CardItemChart.vue";
 import SaleChart from "@/components/Charts/SaleChart.vue";
 import { groupUser } from "@/api/user";
-import { groupByGarbage } from "@/api/garbage";
+import {
+  groupByGarbage,
+  findOneGarbageQuantity,
+  findAllGarbageQuantity,
+} from "@/api/garbage";
 import { findTopFive } from "@/api/message";
 import { onMounted, reactive, ref } from "vue";
 
+// 最新消息列
 const topFive = ref([]);
 
+// 排行列表
+const garbageRankList = ref([]);
+
+// 展示列表
+const showList = ref([]);
+
+// 统计列表
 const countList = reactive([
   {
     title: "用户统计",
@@ -168,6 +186,7 @@ const countList = reactive([
   },
 ]);
 
+// 管理列表
 const manageList = [
   {
     title: "消息管理",
@@ -181,36 +200,46 @@ const manageList = [
   },
 ];
 
+// 设置列表
 const setList = [
   { title: "系统", icon: "&#xe628;", to: { path: "/admin/systemset" } },
   { title: "锁定", icon: "&#xe626;", to: { path: "/admin/lockset" } },
 ];
 
+/**
+ * 获取最新前五消息
+ */
 const getTopFive = async () => {
   const data = await findTopFive();
-  console.log(data);
   topFive.value = data;
 };
 
-//请求数据
-const requestData = async () => {
-  countList.forEach(async (item) => {
-    switch (item.title) {
-      case "用户统计":
-        break;
-      case "废品统计":
-        break;
-      case "评论统计":
-        break;
-      case "评分统计":
-        break;
-    }
-  });
+// 获取垃圾排名
+const getGarbegeRank = async () => {
+  const data = await findAllGarbageQuantity();
+  garbageRankList.value = data.sort(
+    (a, b) => b.totalQuantity - a.totalQuantity
+  );
 };
 
-onMounted(() => {
-  getTopFive();
-  requestData();
+// 获取指定废品的销量
+const getQuantity = async (item = null) => {
+  if (item) {
+    const { orderToGarbage } = await findOneGarbageQuantity(item.garbageId);
+    console.log(orderToGarbage);
+    showList.value = orderToGarbage;
+  } else {
+    const { orderToGarbage } = await findOneGarbageQuantity(
+      garbageRankList.value[0].garbageId
+    );
+    console.log(orderToGarbage);
+    showList.value = orderToGarbage;
+  }
+};
+
+onMounted(async () => {
+  await Promise.all([getTopFive(), getGarbegeRank()]);
+  await getQuantity();
 });
 </script>
 
@@ -248,7 +277,8 @@ onMounted(() => {
         grid-column: 1/4;
       }
 
-      .card-grid-box-list {}
+      .card-grid-box-list {
+      }
 
       .card-grid-box-sale {
         grid-column: 2/5;
@@ -325,7 +355,6 @@ onMounted(() => {
 }
 
 @media screen and (max-width: 768px) {
-
   // 响应式设计，当屏幕宽度小于等于768px时，应用以下
   .content {
     .admin {
@@ -336,7 +365,8 @@ onMounted(() => {
           grid-column: 1;
         }
 
-        .card-grid-box-list {}
+        .card-grid-box-list {
+        }
 
         .card-grid-box-sale {
           grid-column: 1;

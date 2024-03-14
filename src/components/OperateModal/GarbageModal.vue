@@ -146,6 +146,7 @@ watch(() => props.show, () => {
 
 //上传前校验
 const beforeUpload = (file) => {
+    loading.value = true
     const isLt2M = file.size / 1024 / 1024 < 2;
     if (!isLt2M) {
         message.error('Image must smaller than 2MB!');
@@ -154,6 +155,7 @@ const beforeUpload = (file) => {
     formData.append('file', file);
     console.log(formData, file);
     fileList.value = [file];
+    loading.value = false
     return false;
 };
 

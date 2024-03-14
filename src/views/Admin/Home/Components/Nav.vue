@@ -30,7 +30,7 @@
             <div class="user">
                 <div class="user-info">
                     <img src="../../../../assets/img/back.jpg">
-                    <span>名字</span>
+                    <span>{{ store.userDate.userName }}</span>
                 </div>
                 <a-popconfirm placement="right" title="你是否退出?" ok-text="Yes" cancel-text="No" @confirm="exit">
                     <template #icon><i class="iconfont">&#xe7ed;</i></template>

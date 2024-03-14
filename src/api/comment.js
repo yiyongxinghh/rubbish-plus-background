@@ -56,6 +56,32 @@ export const getNewCommentList = (page = '', pageSize = '', id) => {
 }
 
 /**
+ * 根据废品分类的评论依次统计评论总数
+ * @returns 
+ */
+export const getCategoryCommentTotals = ()=>{
+    return httpInstance({
+      method:'GET',
+      url:'/comment/total'
+    })
+}
+
+/**
+ * 求指定废品id平均评分
+ * @param {*} id 
+ * @returns 
+ */
+export const getAverageScore = (id)=>{
+    return httpInstance({
+        method: 'GET',
+        url: '/comment/avg',
+        params: {
+            id
+        }
+    })
+}
+
+/**
  * 获取指定时间范围的数据
  * @param {*} start 
  * @param {*} end 

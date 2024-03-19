@@ -8,8 +8,8 @@ const { emailError, passError, userLive } = userLogin
 
 //创建基础的axios实例
 const httpInstance = axios.create({
-    // baseURL: 'https://server.rubbish-plus.top/',
-    baseURL: 'http://localhost:3000/',
+    baseURL: 'https://server.rubbish-plus.top/',
+    // baseURL: 'http://localhost:3000/',
     timeout: 10000,
 })
 

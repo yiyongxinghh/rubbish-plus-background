@@ -1,6 +1,6 @@
 <template>
     <div class="user-table">
-        <a-table :dataSource="dataSource" :columns="columns" bordered :loading="loading" :row-selection="rowSelection"
+        <a-table :dataSource="dataSource" :columns="columns" bordered :scroll="{ x: 1500 }" :loading="loading" :row-selection="rowSelection"
             :pagination="pagination">
             <template #bodyCell="{ column, text,record }">
                 <template v-if="column.dataIndex === 'userRank'">
@@ -79,7 +79,8 @@ const rowSelection = {
 const columns = [{
     title: '用户名',
     dataIndex: 'userName',
-    align: 'center'
+    align: 'center',
+    fixed: 'left',
 },
 {
     title: '手机号',
@@ -104,7 +105,8 @@ const columns = [{
 {
     title: '操作',
     dataIndex: 'operate',
-    align: 'center'
+    align: 'center',
+    fixed: 'right',
 },
 ]
 let dataSource = reactive([])

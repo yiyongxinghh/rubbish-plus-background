@@ -1,6 +1,6 @@
 <template>
     <div class="garbage-table">
-        <a-table sticky :dataSource="dataSource" :columns="columns" bordered :scroll="{ x: 1500 }"
+        <a-table :dataSource="dataSource" :columns="columns" bordered :scroll="{ x: 1500 }"
             :row-selection="rowSelection" :loading="loading" :pagination="pagination">
             <template #bodyCell="{ column, record }">
                 <template v-if="column.dataIndex === 'operate'">
@@ -18,10 +18,7 @@
                     </a-modal>
                 </template>
                 <template v-if="column.dataIndex === 'user'">
-                    <a-button type="primary" @click="showModal('user')">查看</a-button>
-                    <a-modal v-model:open="userOpen" title="所属人" :footer="null">
-
-                    </a-modal>
+                    <a-tag color="#777">{{ record.user.userName }}</a-tag>
                 </template>
             </template>
             <template #title>
@@ -78,31 +75,26 @@ const showModal = (str) => {
 const columns = [{
     title: '废品名',
     dataIndex: 'garbageName',
-    width: 200,
     fixed: 'left',
     align: 'center'
 },
 {
     title: '废品类型',
-    width: 200,
     dataIndex: 'garbageType',
     align: 'center'
 },
 {
     title: '废品库存',
-    width: 200,
     dataIndex: 'garbageAmount',
     align: 'center'
 },
 {
     title: '废品金额',
-    width: 200,
     dataIndex: 'garbagePrice',
     align: 'center'
 },
 {
     title: '图片',
-    width: 200,
     dataIndex: 'pic',
     align: 'center'
 },
@@ -114,7 +106,6 @@ const columns = [{
 {
     title: '操作',
     dataIndex: 'operate',
-    width: 170,
     fixed: 'right',
     align: 'center'
 },

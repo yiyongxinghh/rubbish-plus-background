@@ -13,19 +13,6 @@
                         <span class="link-name">{{ nav.name }}</span>
                     </a>
                 </li>
-                <li @click="changeClose">
-                    <div class="link-down" :class="{ show: close }">
-                        <a class="nav-links-item">
-                            <i class="iconfont">&#xe62d;</i>
-                            <span class="link-name">设置</span>
-                        </a>
-                        <i class="iconfont">&#xe664;</i>
-                    </div>
-                    <ul class="sub-menu" :class="{ close: close }">
-                        <li><router-link to="/admin/systemset" class="sub-menu-item"><i class="iconfont">&#xe628;</i>系统</router-link></li>
-                        <li><router-link to="/admin/lockset" class="sub-menu-item"><i class="iconfont">&#xe626;</i>锁定</router-link></li>
-                    </ul>
-                </li>
             </ul>
             <div class="user">
                 <div class="user-info">
@@ -62,6 +49,7 @@ const navItems = [
     { icon: "&#xe621;", name: "统计", path: "count" },
     { icon: "&#xe629;", name: "管理", path: "manage" },
     { icon: "&#xe62c;", name: "操作", path: "operate" },
+    { icon: "&#xe62d;", name: "设置", path: "setting" },
 ]
 //导航是否激活
 const activeIndex = ref(0)

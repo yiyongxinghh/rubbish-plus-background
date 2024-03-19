@@ -198,8 +198,7 @@ const manageList = [
 
 // 设置列表
 const setList = [
-  { title: "系统", icon: "&#xe628;", to: { path: "/admin/systemset" } },
-  { title: "锁定", icon: "&#xe626;", to: { path: "/admin/lockset" } },
+  { title: "设置", icon: "&#xe628;", to: { path: "/admin/setting" } },
 ];
 
 /**

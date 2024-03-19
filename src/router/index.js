@@ -11,7 +11,6 @@ import CategoryTable from "@/components/Table/CategoryTable.vue";
 import PicTable from "@/components/Table/PicTable.vue";
 import CommentDetail from "@/views/Admin/Home/Components/CommentDetail.vue";
 import LockSet from '@/views/Admin/Set/LockSet.vue'
-import SystemSet from '@/views/Admin/Set/SystemSet.vue'
 import Select from '@/views/Select/Select.vue'
 import DownLoad from '@/views/DownLoad/DownLoad.vue'
 
@@ -103,17 +102,10 @@ export const router = createRouter({
                     ]
                 },
                 {
-                    path: 'lockset',
+                    path: 'setting',
                     component: LockSet,
                     meta: {
-                        title: '锁定'
-                    }
-                },
-                {
-                    path: 'systemset',
-                    component: SystemSet,
-                    meta: {
-                        title: '系统'
+                        title: '设置'
                     }
                 },
             ]

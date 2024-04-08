@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-        <Footer/>
+        <Footer />
     </div>
 </template>
 
@@ -33,11 +33,14 @@ import BackGround from "@/components/BackGround/BackGround.vue";
 import Footer from '@/components/Footer/Footer.vue';
 import { useRouter } from 'vue-router'
 import { onMounted } from 'vue';
+import { userStore } from '@/stores/userStore'
 
 // 路由器
 const router = useRouter();
-
+const store = userStore();
 const pushRoute = (value)=>{
+    store.clearToken()
+    store.clearUserData()
     router.push(value)
 }
 

@@ -17,7 +17,7 @@
               <template #renderItem="{ item }">
                 <a-list-item>
                   <a-list-item-meta
-                    :description="item.messageIsRead ? '已读' : '未读'"
+                    :description="item.messageContent"
                   >
                     <template #title>
                       <a href="https://www.antdv.com/">{{
@@ -95,6 +95,8 @@ import {
   findOneGarbageQuantity,
   findAllGarbageQuantity,
 } from "@/api/garbage";
+import { getCategoryCommentTotals } from "@/api/comment";
+import { getOrderTotal } from "@/api/order";
 import { findTopFive } from "@/api/message";
 import { onMounted, reactive, ref } from "vue";
 
@@ -149,16 +151,14 @@ const countList = reactive([
   {
     title: "评论统计",
     getData: async () => {
-      const { group, total } = await groupUser();
-      const dataSource = group.map((item) => {
-        if (item.userRank === 0) item.userRank = "普通用户";
-        else if (item.userRank === 1) item.userRank = "配送者";
-        else if (item.userRank === 2) item.userRank = "管理员";
+      const data = await getCategoryCommentTotals();
+      const dataSource = data.map((item) => {
         return {
-          value: item.count,
-          name: item.userRank,
+          value: item.total,
+          name: item.categoryName,
         };
       });
+      const total = data.reduce((acc, cur) => acc + +cur.total, 0);
       return {
         dataSource,
         total,
@@ -168,16 +168,12 @@ const countList = reactive([
   {
     title: "订单统计",
     getData: async () => {
-      const { group, total } = await groupUser();
-      const dataSource = group.map((item) => {
-        if (item.userRank === 0) item.userRank = "普通用户";
-        else if (item.userRank === 1) item.userRank = "配送者";
-        else if (item.userRank === 2) item.userRank = "管理员";
-        return {
-          value: item.count,
-          name: item.userRank,
-        };
-      });
+      const total = await getOrderTotal();
+      console.log(total);
+      const dataSource = [{
+          value: total,
+          name: '订单总数',
+        }];
       return {
         dataSource,
         total,
@@ -202,8 +198,7 @@ const manageList = [
 
 // 设置列表
 const setList = [
-  { title: "系统", icon: "&#xe628;", to: { path: "/admin/systemset" } },
-  { title: "锁定", icon: "&#xe626;", to: { path: "/admin/lockset" } },
+  { title: "设置", icon: "&#xe628;", to: { path: "/admin/setting" } },
 ];
 
 /**

@@ -4,10 +4,7 @@
       <a-spin :spinning="loading" />
     </div>
     <div v-if="route.path === '/admin/manage'">
-      <a-row
-        :gutter="[16, 16]"
-        class="content"
-      >
+      <a-row :gutter="[16, 16]" class="content">
         <a-col v-for="item in dataSource" :span="6">
           <a-card hoverable>
             <template #cover>
@@ -15,8 +12,8 @@
               <!-- <img class="image" alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" /> -->
             </template>
             <template #actions>
-              <setting-outlined />
-              <edit-outlined />
+              <setting-outlined @click="setModal(item)" />
+              <edit-outlined @click="showModal(item)" />
               <ellipsis-outlined @click="toDetail(item)" />
             </template>
             <a-card-meta
@@ -40,6 +37,8 @@
       </div>
     </div>
     <router-view v-else></router-view>
+    <GarbageModal :show="show" :modalData="modalData"></GarbageModal>
+    <contextHolder />
   </div>
 </template>
 
@@ -49,9 +48,15 @@ import {
   EditOutlined,
   EllipsisOutlined,
 } from "@ant-design/icons-vue";
-import { getGarbage } from "@/api/garbage";
-import { onMounted, ref } from "vue";
+import GarbageModal from "@/components/OperateModal/GarbageModal.vue";
+import { getGarbage, deleteGarbage } from "@/api/garbage";
+import { onMounted, onUnmounted, ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
+import emitter from "@/utils/emitter";
+import { Modal } from "ant-design-vue";
+// 设置模态框
+const [modal, contextHolder] = Modal.useModal();
+
 const router = useRouter();
 const route = useRoute();
 
@@ -60,6 +65,11 @@ const loading = ref(false);
 
 //数据源
 const dataSource = ref([]);
+
+//编辑模态框展示标识
+const show = ref(false);
+//回显数据
+const modalData = ref({});
 
 const total = ref(100); // 总条数
 const current = ref(1); // 当前页数
@@ -87,8 +97,33 @@ const toDetail = (item) => {
   router.push({ name: "comment", params: { id: item.garbageId } });
 };
 
+//展示编辑模态框
+const showModal = (item) => {
+  show.value = !show.value;
+  modalData.value = item;
+};
+
+//设置模态框
+const setModal = (item) => {
+  modal.confirm({
+    title: "是否强制删除",
+    centered: true,
+    onOk: async () => {
+      await deleteGarbage(item.garbageId);
+      getData();
+    },
+  });
+};
+
 onMounted(() => {
   getData(current.value, defaultPageSize.value);
+  emitter.on("request-data-garbage", () => {
+    getData();
+  });
+});
+
+onUnmounted(() => {
+  emitter.off("request-data-garbage");
 });
 </script>
 

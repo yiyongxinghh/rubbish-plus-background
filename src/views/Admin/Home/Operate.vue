@@ -60,6 +60,10 @@ const changeSegmented = (value) => {
     padding: 10px 20px;
     box-sizing: border-box;
     width: calc(100vw - 260px);
+    overflow: auto;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 
     .operate-panel {
         display: flex;

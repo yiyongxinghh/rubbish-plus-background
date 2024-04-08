@@ -13,17 +13,16 @@ router.beforeEach(async (to, from, next) => {
     nProgress.start()
     const store = userStore()
     if(store.userToken){
-        // try {
-        //     await groupUser() 
-        // } catch (err) {
-        //     next('/login') //中转到登录页
-        //     return store.clearToken()
-        // }
+        try {
+            await groupUser() 
+        } catch (err) {
+            next('/login') //中转到登录页
+            return store.clearToken()
+        }
         //存在token
         if(to.path === '/login'){
             //跳转至主页
             next('/select')
-
         }else{
             //放过
             next()

@@ -8,15 +8,15 @@
       <div class="detail-score">
         <div class="score-item">
           <span>评论</span>
-          <span>1.0</span>
+          <span>{{ pagination.total }}</span>
         </div>
         <div class="score-item">
           <span>评分</span>
-          <span>1.0</span>
+          <span>{{ score}}</span>
         </div>
         <div class="score-item">
           <span>收藏</span>
-          <span>1.0</span>
+          <span>{{ collection }}</span>
         </div>
       </div>
     </div>
@@ -61,7 +61,7 @@
             <template #renderItem="{ item }">
               <a-list-item>
                 <template #extra>
-                  <a-tag color="#777">点赞数：{{ item.commentScore }}</a-tag>
+                  <a-tag color="#777">评分：{{ item.commentScore }}</a-tag>
                 </template>
                 <a-list-item-meta :description="item.commentTime">
                   <template #title>
@@ -91,7 +91,12 @@
 import { computed, onMounted, ref, reactive } from "vue";
 import { useRoute } from "vue-router";
 import { getGarbageOne } from "@/api/garbage";
-import { getHotCommentList, getNewCommentList } from "@/api/comment";
+import { getGarbageCount } from '@/api/collection'
+import {
+  getHotCommentList,
+  getNewCommentList,
+  getAverageScore,
+} from "@/api/comment";
 import {} from "@/api/comment";
 
 //路由
@@ -102,6 +107,11 @@ const garbage = ref({});
 
 // 评论数据
 const commentData = ref([]);
+
+// 评分
+const score = ref(0);
+//收藏
+const collection = ref(0);
 
 //分页器
 const pagination = reactive({
@@ -153,14 +163,25 @@ const commentList = ref([]);
 //加载标识
 const loading = ref(false);
 
+//获取废品数据
 const getGarbageData = async () => {
   garbage.value = await getGarbageOne(route.params.id);
-  console.log(garbage.value);
+};
+
+//获取收藏废品总数
+const getGarbageCollectionCount = async () =>{
+  collection.value = await getGarbageCount(route.params.id);
+}
+
+// 获取平均评分
+const getAvgScore = async () => {
+  const data = await getAverageScore(route.params.id);
+  if(data) score.value =  parseFloat(data.average_score).toFixed(1);
 };
 
 onMounted(async () => {
   loading.value = true;
-  await getGarbageData();
+  await Promise.all([getGarbageData(), getAvgScore(),getGarbageCollectionCount()]);
   await handleSelect();
   loading.value = false;
 });

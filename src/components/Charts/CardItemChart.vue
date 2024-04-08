@@ -5,6 +5,7 @@
 <script setup>
 import { ref, shallowRef, onMounted, onBeforeUnmount, watch } from "vue";
 const { dataSource } = defineProps(["dataSource"]);
+console.log(dataSource);
 //获取dom
 const cardRef = ref();
 

@@ -14,7 +14,7 @@
                 </a-segmented>
             </div>
             <router-view></router-view>
-            <div v-if="route.path==='/admin/operate'" class="operate-content">
+            <div v-if="route.path === '/admin/operate'" class="operate-content">
                 <h1>请选择操作的子项</h1>
             </div>
         </div>
@@ -24,7 +24,7 @@
 <script setup>
 import Banner from '@/components/Banner/Banner.vue'
 import { reactive, ref } from 'vue';
-import { useRouter,useRoute } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 const router = useRouter()
 const route = useRoute()
 console.log(route);
@@ -59,6 +59,7 @@ const changeSegmented = (value) => {
 .content {
     padding: 10px 20px;
     box-sizing: border-box;
+    width: calc(100vw - 260px);
 
     .operate-panel {
         display: flex;

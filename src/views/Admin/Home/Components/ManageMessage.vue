@@ -41,7 +41,6 @@ import { findAllUser } from "@/api/user";
 import { userStore } from "@/stores/userStore";
 import Chat from "@/components/Chat/Chat.vue";
 import { socket } from "@/utils/socket";
-import { anyType } from "ant-design-vue/es/_util/type";
 //引仓库
 const store = userStore();
 const userName = store.userDate.userName;

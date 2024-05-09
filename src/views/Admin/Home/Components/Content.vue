@@ -321,7 +321,7 @@ onMounted(async () => {
       }
 
       .card-item-sale {
-        height: 40vh;
+        height: 60vh;
       }
 
       .card-item-container {

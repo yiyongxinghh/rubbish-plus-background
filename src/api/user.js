@@ -91,7 +91,7 @@ export const updateUser = (userId, user) => {
     return httpInstance({
         method: 'Patch',
         url: `/user/${userId}`,
-        data: user
+        data: {user}
     })
 }
 

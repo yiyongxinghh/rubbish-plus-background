@@ -47,7 +47,7 @@ const listContainer = ref(null);
 //消息对象
 const messageObject = reactive({
   sender: store.userDate.userId,
-  recipient: "",
+  recipient: props.userDate.userId,
   messageContent: "",
   messageTime: new Date(),
 });
